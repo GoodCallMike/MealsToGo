@@ -5,7 +5,7 @@ import { StyleSheet, Text, View, SafeAreaView, StatusBar } from "react-native";
 export default function App() {
   return (
     <>
-      <SafeAreaView style={styles.safeAreaView}>
+      <SafeAreaView style={styles.container}>
         <View style={styles.search}>
           <Text>Search</Text>
         </View>
@@ -19,7 +19,7 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  safeAreaView: {
+  container: {
     flex: 1,
     // Returns a value on Android only; iOS returns null
     marginTop: StatusBar.currentHeight,

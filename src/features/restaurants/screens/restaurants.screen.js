@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { FlatList, View } from "react-native";
 import { Searchbar } from "react-native-paper";
-import { Ionicons } from "@expo/vector-icons";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 
 const SearchContainer = styled(View)`

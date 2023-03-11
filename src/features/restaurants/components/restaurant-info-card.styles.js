@@ -6,8 +6,11 @@ export const Icon = styled.Image`
   width: 20px;
 `;
 
+export const Info = styled(Card.Content)``;
+
 export const RestaurantCard = styled(Card)`
   background-color: white;
+  margin-bottom: ${(props) => props.theme.space[3]};
 `;
 
 export const RestaurantCardCover = styled(Card.Cover)`

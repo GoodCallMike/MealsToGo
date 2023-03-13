@@ -1,5 +1,6 @@
 import React from "react";
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 import {
   API_KEY,
   APP_ID,
@@ -15,12 +16,12 @@ import {
   Oswald_400Regular,
 } from "@expo-google-fonts/oswald";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
-import { SafeArea } from "./src/components/utility/safe-area.component";
 import { theme } from "./src/infrastructure/theme";
 import { RestaurantsContextProvider } from "./src/services/restaurants/resturants.context";
 import { LocationContextProvider } from "./src/services/location/location.context";
 import { FavoritesContextProvider } from "./src/services/favorites/favorites.context";
 import { Navigation } from "./src/infrastructure/navigation";
+import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 
 const firebaseConfig = {
   apiKey: API_KEY,
@@ -32,6 +33,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 export default function App() {
   let [oswaldLoaded] = useOswald({
@@ -45,17 +47,19 @@ export default function App() {
   if (!oswaldLoaded || !latoLoaded) return null;
 
   return (
-    <SafeArea>
+    <>
       <ThemeProvider theme={theme}>
-        <FavoritesContextProvider>
-          <LocationContextProvider>
-            <RestaurantsContextProvider>
-              <Navigation />
-            </RestaurantsContextProvider>
-          </LocationContextProvider>
-        </FavoritesContextProvider>
+        <AuthenticationContextProvider auth={auth}>
+          <FavoritesContextProvider>
+            <LocationContextProvider>
+              <RestaurantsContextProvider>
+                <Navigation />
+              </RestaurantsContextProvider>
+            </LocationContextProvider>
+          </FavoritesContextProvider>
+        </AuthenticationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
-    </SafeArea>
+    </>
   );
 }

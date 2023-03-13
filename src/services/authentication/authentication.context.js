@@ -1,29 +1,30 @@
 import React, { useState, createContext } from "react";
-import { loginReqeust } from "./authentication.service";
+import { loginRequest } from "./authentication.service";
 
 export const AuthenticationContext = createContext();
 
-export const AuthenticationContextProvider = ({ auth, children }) => {
+export const AuthenticationContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
 
   const onLogin = (email, password) => {
     setIsLoading(true);
-    loginReqeust(auth, email, password)
+    loginRequest(email, password)
       .then((u) => {
         setUser(u);
         setIsLoading(false);
       })
       .catch((e) => {
         setIsLoading(false);
-        setError(e);
+        setError(e.toString());
       });
   };
 
   return (
     <AuthenticationContext.Provider
       value={{
+        isAuthenticated: !!user,
         user,
         isLoading,
         error,

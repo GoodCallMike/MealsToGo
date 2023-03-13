@@ -33,7 +33,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+getAuth(app);
 
 export default function App() {
   let [oswaldLoaded] = useOswald({
@@ -49,7 +49,7 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <AuthenticationContextProvider auth={auth}>
+        <AuthenticationContextProvider>
           <FavoritesContextProvider>
             <LocationContextProvider>
               <RestaurantsContextProvider>

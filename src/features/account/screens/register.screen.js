@@ -61,7 +61,7 @@ export const RegisterScreen = ({ navigation }) => {
           icon="email"
           mode="contained"
           onPress={() => onRegister(email, password, repeatedPassword)}
-          loading={!isLoading}
+          loading={isLoading}
         >
           Register
         </AuthButton>

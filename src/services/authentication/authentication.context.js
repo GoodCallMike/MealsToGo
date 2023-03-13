@@ -1,5 +1,9 @@
 import React, { useState, createContext } from "react";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { loginRequest } from "./authentication.service";
 
 export const AuthenticationContext = createContext();
@@ -9,6 +13,7 @@ export const AuthenticationContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [error, setError] = useState(null);
   const auth = getAuth();
+  console.log(auth);
 
   const onLogin = (email, password) => {
     setIsLoading(true);
@@ -22,6 +27,15 @@ export const AuthenticationContextProvider = ({ children }) => {
         setError(e.toString());
       });
   };
+
+  onAuthStateChanged(auth, (usr) => {
+    if (usr) {
+      setUser(usr);
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
+    }
+  });
 
   const onRegister = (email, password, repeatedPassword) => {
     setIsLoading(true);

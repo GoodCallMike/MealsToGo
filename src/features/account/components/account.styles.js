@@ -30,6 +30,7 @@ export const AuthButton = styled(Button).attrs({
 })`
   padding: ${(props) => props.theme.space[2]};
   border-radius: 4px;
+  text-transform: uppercase;
 `;
 
 export const AuthInput = styled(TextInput)``;

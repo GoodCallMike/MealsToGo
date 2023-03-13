@@ -4,6 +4,7 @@ import { FlatList, TouchableOpacity } from "react-native";
 import { ActivityIndicator, MD3Colors } from "react-native-paper";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import { RestaurantsContext } from "../../../services/restaurants/resturants.context";
+import { FavoritesContext } from "../../../services/favorites/favorites.context";
 import { Search } from "../components/search.component";
 
 const RestaurantList = styled(FlatList).attrs({
@@ -19,7 +20,8 @@ const ActivityIndicatorContainter = styled.View`
 `;
 
 export const RestaurantsScreen = ({ navigation }) => {
-  const { error, isLoading, restaurants } = useContext(RestaurantsContext);
+  const { isLoading, restaurants } = useContext(RestaurantsContext);
+  const { favorites } = useContext(FavoritesContext);
 
   if (isLoading) {
     return (

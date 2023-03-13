@@ -15,6 +15,7 @@ import {
   Section,
   SectionEnd,
 } from "./restaurant-info-card.styles";
+import { Favorite } from "../../../components/favorites/favorites.component";
 
 export const RestaurantInfoCard = ({ resturant = {} }) => {
   const {
@@ -34,6 +35,7 @@ export const RestaurantInfoCard = ({ resturant = {} }) => {
 
   return (
     <RestaurantCard elevation={5}>
+      <Favorite restaurant={resturant} />
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
         <Text variant="label">{name}</Text>

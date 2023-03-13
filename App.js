@@ -1,4 +1,13 @@
 import React from "react";
+import { initializeApp } from "firebase/app";
+import {
+  API_KEY,
+  APP_ID,
+  AUTH_DOMAIN,
+  MESSAGING_SENDER_ID,
+  PROJECT_ID,
+  STORAGE_BUCKET,
+} from "@env";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { ThemeProvider } from "styled-components";
 import {
@@ -12,6 +21,17 @@ import { RestaurantsContextProvider } from "./src/services/restaurants/resturant
 import { LocationContextProvider } from "./src/services/location/location.context";
 import { FavoritesContextProvider } from "./src/services/favorites/favorites.context";
 import { Navigation } from "./src/infrastructure/navigation";
+
+const firebaseConfig = {
+  apiKey: API_KEY,
+  authDomain: AUTH_DOMAIN,
+  projectId: PROJECT_ID,
+  storageBucket: STORAGE_BUCKET,
+  messagingSenderId: MESSAGING_SENDER_ID,
+  appId: APP_ID,
+};
+
+const app = initializeApp(firebaseConfig);
 
 export default function App() {
   let [oswaldLoaded] = useOswald({

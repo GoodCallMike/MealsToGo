@@ -1,8 +1,11 @@
 import React from "react";
+import styled from "styled-components";
+import LottieView from "lottie-react-native";
 import {
   AccountBackground,
   AccountContainer,
   AccountCover,
+  AnimationWrapper,
   AuthButton,
   Title,
 } from "../components/account.styles";
@@ -12,6 +15,16 @@ export const AccountScreen = ({ navigation }) => {
   return (
     <AccountBackground>
       <AccountCover />
+      <AnimationWrapper>
+        <LottieView
+          key="animation"
+          autoPlay
+          loop
+          resizeMode="cover"
+          source={require("../../../../assets/food-carousel.json")}
+          style={{ height: 200 }}
+        />
+      </AnimationWrapper>
       <Title>Meals To Go</Title>
       <AccountContainer>
         <AuthButton

@@ -3,6 +3,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
 import { loginRequest } from "./authentication.service";
 
@@ -19,9 +20,15 @@ export const AuthenticationContextProvider = ({ children }) => {
       setUser(usr);
       setIsLoading(false);
     } else {
+      setUser(null);
       setIsLoading(false);
     }
   });
+
+  const onLogout = () => {
+    setUser(null);
+    signOut(auth);
+  };
 
   const onLogin = (email, password) => {
     setIsLoading(true);
@@ -62,6 +69,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         isLoading,
         error,
         onLogin,
+        onLogout,
         onRegister,
       }}
     >

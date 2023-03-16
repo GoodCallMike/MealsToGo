@@ -8,6 +8,7 @@ import { FavoritesContext } from "../../../services/favorites/favorites.context"
 import { Search } from "../components/search.component";
 import { FavoritesBar } from "../../../components/favorites/favorites-bar.component";
 import { RestaurantList } from "../components/restaurant-list.styles";
+import { FadeInView } from "../../../components/animations/fade.animation";
 
 const ActivityIndicatorContainter = styled.View`
   flex: 1;
@@ -48,7 +49,9 @@ export const RestaurantsScreen = ({ navigation }) => {
                 })
               }
             >
-              <RestaurantInfoCard resturant={item} />
+              <FadeInView>
+                <RestaurantInfoCard resturant={item} />
+              </FadeInView>
             </TouchableOpacity>
           );
         }}
